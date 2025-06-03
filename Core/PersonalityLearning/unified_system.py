@@ -468,7 +468,7 @@ class PersonalityLearningUnified:
             return True
 
         except Exception as e:
-            self.logger.error(f"Enhanced analysis recording failed: {e}")
+            logger.error(f"Enhanced analysis recording failed: {e}")
             return False
 
 
