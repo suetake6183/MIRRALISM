@@ -16,7 +16,6 @@ SuperWhisper 自動処理ワークフロー（MIRRALISM V2）
 
 import json
 import logging
-import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -92,9 +91,7 @@ class SuperWhisperAutoWorkflow:
             )
 
             if not integration_result["success"]:
-                raise Exception(
-                    f"統合処理失敗: {integration_result.get('error', 'unknown')}"
-                )
+                raise Exception(f"統合処理失敗: {integration_result.get('error', 'unknown')}")
 
             # Phase 2: PersonalityLearning分析拡張
             enhanced_analysis = self._enhance_personality_analysis(
@@ -191,7 +188,6 @@ class SuperWhisperAutoWorkflow:
         # PersonalityLearning結果の詳細分析
         analysis_result = enhanced.get("analysis_result")
         if analysis_result and analysis_result.get("success"):
-
             # 精度進化チェック
             confidence = analysis_result.get("confidence", 0.0)
             evolution_status = analysis_result.get("evolution_status", {})

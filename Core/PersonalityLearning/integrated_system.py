@@ -19,9 +19,9 @@ V2データベース + PersonalityLearningCore の完全統合
 import logging
 import os
 import sys
-from datetime import date, datetime
+from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 # パス設定（同一ディレクトリのモジュールをインポート）
 current_dir = Path(__file__).parent
@@ -96,9 +96,7 @@ class MirralismPersonalityLearning:
             95.0: "V2_target_achieved",
         }
 
-        logger.info(
-            f"MIRRALISM統合システム初期化完了 - 現在精度: {self.current_accuracy}%"
-        )
+        logger.info(f"MIRRALISM統合システム初期化完了 - 現在精度: {self.current_accuracy}%")
 
     def analyze_entry(
         self,
@@ -386,9 +384,7 @@ class MirralismPersonalityLearning:
                 accuracy_after=self.current_accuracy,  # 実分析後に更新
             )
 
-            logger.info(
-                f"TaskMaster連携記録: Task {task_id}, 学習影響度: {learning_impact}"
-            )
+            logger.info(f"TaskMaster連携記録: Task {task_id}, 学習影響度: {learning_impact}")
             return True
 
         except Exception as e:

@@ -103,9 +103,7 @@ class WeeklyQualityAuditor:
         report.append(f"監査日時: {audit_result['audit_date']}")
         report.append(f"検査ディレクトリ数: {audit_result['total_directories']}")
         report.append(f"準拠率: {audit_result['compliance_rate']:.1f}%")
-        report.append(
-            f"監査結果: {'✅ 合格' if audit_result['audit_passed'] else '❌ 失敗'}"
-        )
+        report.append(f"監査結果: {'✅ 合格' if audit_result['audit_passed'] else '❌ 失敗'}")
         report.append("")
 
         if audit_result["violation_directories"]:

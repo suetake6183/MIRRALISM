@@ -9,7 +9,6 @@ MIRRALISM V2 品質保証フレームワーク
 """
 
 import json
-import random
 import sqlite3
 import time
 from datetime import datetime
@@ -124,7 +123,6 @@ class QualityAssuranceFramework:
             start_time = time.time()
 
             # 模擬分析処理
-            test_content = "技術的な課題について誠実に取り組む"
             time.sleep(0.001)  # 実際の処理時間をシミュレート
 
             end_time = time.time()
@@ -344,9 +342,7 @@ class QualityAssuranceFramework:
         # 総合評価
         overall = test_results.get("overall_assessment", {})
         overall_status = overall.get("status", "UNKNOWN")
-        overall_color = self.quality_standards.get(overall_status, {}).get(
-            "color", "⚪"
-        )
+        overall_color = self.quality_standards.get(overall_status, {}).get("color", "⚪")
         overall_score = overall.get("overall_score", 0)
 
         print("\n" + "=" * 50)

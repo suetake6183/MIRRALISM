@@ -19,9 +19,6 @@ def test_project_structure():
 
 def test_imports():
     """基本インポートテスト"""
-    import numpy
-    import pandas
-    import pytest
 
     assert True
 

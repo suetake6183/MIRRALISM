@@ -7,15 +7,11 @@ MIRRALISM 設計書準拠チェックシステム
 scriptsディレクトリ問題の再発を防止
 """
 
-import json
-import os
 from pathlib import Path
 
 
 class DesignViolationError(Exception):
     """設計書違反エラー"""
-
-    pass
 
 
 class DesignComplianceChecker:

@@ -96,9 +96,7 @@ class SuperWhisperMirralismIntegration:
             # 保存・配置処理
             save_result = self._save_integrated_data(integrated_data)
 
-            self.logger.info(
-                f"✅ 音声データ統合処理完了: {audio_data.get('notion_id', 'unknown')}"
-            )
+            self.logger.info(f"✅ 音声データ統合処理完了: {audio_data.get('notion_id', 'unknown')}")
 
             return {
                 "success": True,

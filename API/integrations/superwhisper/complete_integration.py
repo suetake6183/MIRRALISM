@@ -17,7 +17,6 @@ Phase 1-3統合エントリーポイント:
 """
 
 import logging
-import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -25,11 +24,8 @@ from typing import Any, Dict, List, Optional
 
 # 統合モジュールインポート
 sys.path.append(str(Path(__file__).parent))
-from taskmaster_integration import (
-    TaskMasterSuperWhisperIntegration,
-    integrate_with_taskmaster,
-)
-from workflow import SuperWhisperAutoWorkflow, process_superwhisper_input
+from taskmaster_integration import integrate_with_taskmaster
+from workflow import process_superwhisper_input
 
 
 class CompleteIntegrationSystem:

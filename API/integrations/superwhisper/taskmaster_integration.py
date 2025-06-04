@@ -14,11 +14,10 @@ TaskMaster-SuperWhisper 統合モジュール（MIRRALISM V2）
 """
 
 import logging
-import os
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 # TaskMaster MCP連携
 project_root = Path(__file__).parent.parent.parent.parent.parent
@@ -295,13 +294,9 @@ class TaskMasterSuperWhisperIntegration:
 
             # アイデアタスクタイトル
             if classification == "idea":
-                task_title = (
-                    f"💡 アイデア検討: {self._extract_key_phrase(text_content)}"
-                )
+                task_title = f"💡 アイデア検討: {self._extract_key_phrase(text_content)}"
             else:  # reflection
-                task_title = (
-                    f"🔍 振り返り実装: {self._extract_key_phrase(text_content)}"
-                )
+                task_title = f"🔍 振り返り実装: {self._extract_key_phrase(text_content)}"
 
             # アイデアタスク詳細
             task_details = f"""

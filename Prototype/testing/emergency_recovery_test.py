@@ -8,9 +8,7 @@
 状況: 緊急データ復旧作業中
 """
 
-import json
 import os
-from pathlib import Path
 
 
 class EmergencyRecoveryTest:

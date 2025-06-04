@@ -8,7 +8,6 @@ MIRRALISM ディレクトリ構造監査スクリプト
 """
 
 import os
-from pathlib import Path
 
 
 def audit_directories():
@@ -120,9 +119,7 @@ def audit_directories():
             important_missing.append(d)
 
     if critical_missing:
-        print(
-            f"   🔴 重大リスク（{len(critical_missing)}個）: コア機能・データ格納不能"
-        )
+        print(f"   🔴 重大リスク（{len(critical_missing)}個）: コア機能・データ格納不能")
         for d in critical_missing:
             print(f"      - {d}")
 

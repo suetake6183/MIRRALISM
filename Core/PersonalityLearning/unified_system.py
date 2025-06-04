@@ -116,8 +116,7 @@ class PersonalityLearningUnified:
         }
 
         logger.info(
-            f"PersonalityLearningUnified初期化完了 - "
-            f"現在精度: {self.current_accuracy}%"
+            f"PersonalityLearningUnified初期化完了 - " f"現在精度: {self.current_accuracy}%"
         )
 
     def _get_latest_accuracy(self) -> float:
@@ -279,8 +278,7 @@ class PersonalityLearningUnified:
                     category, importance, expressions = pattern
                     # 表現パターンマッチング
                     if any(
-                        expr.strip('"「」') in content
-                        for expr in expressions.split("」「")
+                        expr.strip('"「」') in content for expr in expressions.split("」「")
                     ):
                         boost += (
                             importance * self.unified_weights["value_pattern_boost"]
