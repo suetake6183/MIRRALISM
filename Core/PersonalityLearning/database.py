@@ -564,11 +564,14 @@ class PersonalityLearningDatabase:
             conn.execute(
                 """
                 UPDATE voice_data_metadata SET
-                personality_analysis_done = TRUE, personality_elements_count = ?,
-                sentiment_analysis = ?, keywords_extracted = ?, learning_contribution = ?,
-                processed_at = ?
+                    personality_analysis_done = TRUE,
+                    personality_elements_count = ?,
+                    sentiment_analysis = ?,
+                    keywords_extracted = ?,
+                    learning_contribution = ?,
+                    processed_at = ?
                 WHERE id = ?
-            """,
+                """,
                 (
                     personality_elements,
                     json.dumps(sentiment),
