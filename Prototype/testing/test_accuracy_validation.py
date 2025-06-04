@@ -31,7 +31,7 @@ class AccuracyValidator:
             # 最新の分析結果を取得
             cursor.execute(
                 """
-                SELECT analysis_confidence, tech_keywords, integrity_keywords
+                SELECT suetake_likeness_index, tech_keywords, integrity_keywords
                 FROM daily_analysis
                 ORDER BY created_at DESC
                 LIMIT 10
