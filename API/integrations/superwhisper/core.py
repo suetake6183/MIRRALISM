@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# isort: skip_file
 """
 SuperWhisper統合コアモジュール（MIRRALISM V2）
 作成者: 技術責任者
@@ -22,9 +22,9 @@ from typing import Any, Dict, Optional
 sys.path.append(str(Path(__file__).parent.parent.parent.parent / "Core"))
 
 try:
-    from PersonalityLearning.integrated_system import (  # isort: skip
+    from PersonalityLearning.integrated_system import (
         MirralismPersonalityLearning,
-    )
+    )  # isort: skip
 except ImportError as e:
     logging.warning(f"PersonalityLearning統合モジュールが見つかりません: {e}")
     MirralismPersonalityLearning = None
