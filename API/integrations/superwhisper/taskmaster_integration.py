@@ -17,7 +17,9 @@ import logging
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any
+from typing import Dict
+from typing import Optional
 
 # TaskMaster MCP連携
 project_root = Path(__file__).parent.parent.parent.parent.parent

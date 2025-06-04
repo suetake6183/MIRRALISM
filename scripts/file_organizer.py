@@ -22,7 +22,8 @@ import os
 import re
 import shutil
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Dict
+from typing import Tuple
 
 # ログ設定
 logging.basicConfig(

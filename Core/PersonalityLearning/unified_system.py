@@ -20,7 +20,9 @@ import logging
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any
+from typing import Dict
+from typing import Optional
 
 # パス設定（同一ディレクトリのモジュールをインポート）
 current_dir = Path(__file__).parent
