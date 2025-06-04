@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
@@ -53,7 +53,7 @@ jobs:
           safety check --short-report
 
       - name: 📋 Upload Security Reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: security-reports
@@ -76,7 +76,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
@@ -126,7 +126,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🐍 Setup Python with AI Dependencies
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
@@ -187,7 +187,7 @@ jobs:
           echo "- **Timestamp**: $(date)" >> deployment-report.md
 
       - name: 📊 Upload Deployment Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: deployment-artifacts
           path: |

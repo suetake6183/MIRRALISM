@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0 # Full history for better analysis
 
       - name: 🐍 Setup Python Environment
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.9"
 
@@ -154,7 +154,7 @@ jobs:
           echo "- V1 Anti-patterns: Forbidden" >> quality-report.md
 
       - name: 📋 Upload Quality Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: mirralism-quality-report
