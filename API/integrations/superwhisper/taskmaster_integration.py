@@ -20,6 +20,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from API.taskmaster_mcp_client import TaskMasterMCPClient
+
 # TaskMaster MCP連携
 project_root = Path(__file__).parent.parent.parent.parent.parent
 sys.path.append(str(project_root))
@@ -40,6 +42,13 @@ class TaskMasterSuperWhisperIntegration:
         """
         self.project_root = project_root or TASKMASTER_PROJECT_ROOT
         self.setup_logging()
+
+        self.mcp_client = TaskMasterMCPClient()
+        connection_ok = self.mcp_client.test_connection()
+        if connection_ok:
+            self.logger.info("✅ MCP connection established")
+        else:
+            self.logger.warning("⚠️ MCP connection failed; running in offline mode")
 
         # TaskMaster操作統計
         self.operation_stats = {
@@ -244,10 +253,7 @@ class TaskMasterSuperWhisperIntegration:
                 text_content, confidence, final_result
             )
 
-            # TaskMaster MCP操作をシミュレート（実際の実装では実際のMCP呼び出し）
-            task_data = {
-                "title": task_title,
-                "description": f"SuperWhisper音声入力から自動生成 (精度: {confidence}%)",
+            extra = {
                 "details": task_details,
                 "priority": priority,
                 "source": "superwhisper_voice",
@@ -258,6 +264,19 @@ class TaskMasterSuperWhisperIntegration:
                     "notion_id": final_result.get("notion_id"),
                 },
             }
+
+            if self.mcp_client:
+                try:
+                    task_data = self.mcp_client.create_task(
+                        task_title,
+                        f"SuperWhisper音声入力から自動生成 (精度: {confidence}%)",
+                        extra,
+                    )
+                except Exception as e:
+                    self.logger.error(f"MCP create_task failed: {e}")
+                    task_data = {"title": task_title, **extra}
+            else:
+                task_data = {"title": task_title, **extra}
 
             # 統計更新
             self.operation_stats["tasks_created"] += 1
@@ -321,14 +340,25 @@ class TaskMasterSuperWhisperIntegration:
 - 実装可能性評価
 """
 
-            task_data = {
-                "title": task_title,
-                "description": f"高精度分析({confidence}%)による{classification}の自動タスク化",
+            extra = {
                 "details": task_details,
                 "priority": "medium",
                 "source": f"superwhisper_{classification}",
                 "classification": classification,
             }
+
+            if self.mcp_client:
+                try:
+                    task_data = self.mcp_client.create_task(
+                        task_title,
+                        f"高精度分析({confidence}%)による{classification}の自動タスク化",
+                        extra,
+                    )
+                except Exception as e:
+                    self.logger.error(f"MCP create_task failed: {e}")
+                    task_data = {"title": task_title, **extra}
+            else:
+                task_data = {"title": task_title, **extra}
 
             # 統計更新
             self.operation_stats["tasks_created"] += 1
