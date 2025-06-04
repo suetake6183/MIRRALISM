@@ -19,7 +19,7 @@ import sqlite3
 import threading
 from contextlib import contextmanager
 from datetime import date, datetime
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Dict, List
 
 # ログ設定
 logger = logging.getLogger(__name__)
