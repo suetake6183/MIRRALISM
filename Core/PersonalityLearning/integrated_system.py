@@ -126,9 +126,14 @@ class MirralismPersonalityLearning:
             # Core分析実行
             if source_type == "voice" and voice_data:
                 # SuperWhisper統合分析
-                core_result = self.core.process_voice_input(
-                    {"content": content, "metadata": voice_data}
-                )
+                # process_voice_input expects the voice metadata and the
+                # transcribed content in a single dictionary. Previously only
+                # ``{"content": content, "metadata": voice_data}`` was passed
+                # which resulted in quality and confidence information being
+                # ignored.  Merge the parameters correctly so that voice
+                # related scores are taken into account.
+                core_voice_data = {"content": content, **voice_data}
+                core_result = self.core.process_voice_input(core_voice_data)
             else:
                 # 標準分析
                 core_result = self.core.analyze_journal_entry(
@@ -323,7 +328,12 @@ class MirralismPersonalityLearning:
             95.0: "production",  # V2_target_achieved
         }
 
-        for threshold, stage in reversed(evolution_mapping.items()):
+        # ``dict_items`` does not guarantee ``reversed`` support on all
+        # Python versions.  Sort the thresholds explicitly in descending
+        # order so the function behaves consistently on Python 3.9+.
+        for threshold, stage in sorted(
+            evolution_mapping.items(), key=lambda x: x[0], reverse=True
+        ):
             if accuracy >= threshold:
                 return stage
         return "initial"
