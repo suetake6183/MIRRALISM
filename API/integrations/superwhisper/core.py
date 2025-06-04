@@ -16,13 +16,15 @@ import logging
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 # MIRRALISM Core統合
 sys.path.append(str(Path(__file__).parent.parent.parent.parent / "Core"))
 
 try:
-    from PersonalityLearning.integrated_system import MirralismPersonalityLearning
+    from PersonalityLearning.integrated_system import (  # isort: skip
+        MirralismPersonalityLearning,
+    )
 except ImportError as e:
     logging.warning(f"PersonalityLearning統合モジュールが見つかりません: {e}")
     MirralismPersonalityLearning = None
@@ -195,7 +197,7 @@ class SuperWhisperMirralismIntegration:
                     "confidence": analysis_accuracy,
                     "analysis": result.get("analysis", {}),
                     "evolution_status": evolution_status,
-                    "summary": f"精度: {analysis_accuracy}% | 音声重み: {quality_score * 1.5 if source_type == 'voice' else quality_score}",
+                    "summary": f"精度: {analysis_accuracy}% | 重み: {quality_score}",
                 }
             else:
                 self.logger.warning(
